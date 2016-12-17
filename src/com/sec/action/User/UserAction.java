@@ -1,11 +1,10 @@
-package com.sec.action;
+package com.sec.action.User;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.sec.DAO.IUserDao;
 import com.sec.DAO.Impl.IUserDaoImpl;
+import com.sec.action.SuperAction;
 import com.sec.db.User;
-
-import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/15.
@@ -25,7 +24,7 @@ public class UserAction extends SuperAction implements ModelDriven<User> {
         if ("".equals(user.getWorkID())) {
             this.addFieldError("usernameError", "工号不能为空");
         }
-        if (user.getPassword().length() < 3) {
+        if (user.getPassword().length() < 3 && user.getPassword().length() >0) {
             this.addFieldError("passwordError", "密码长度不少于3位");
         }
     }
@@ -42,19 +41,21 @@ public class UserAction extends SuperAction implements ModelDriven<User> {
             return "login_failed";
         }
     }
-
-    public String query() {
-        IUserDao userDao = new IUserDaoImpl();
-        try {
-            List<User> list = userDao.queryAll();
-            if (list != null && list.size() > 0) {
-                session.setAttribute("User_list", list);
-            }
-            return "User_query_success";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "User_query_null";
-        }
-    }
+//
+//    public String query() {
+//        IUserDao userDao = new IUserDaoImpl();
+//        try {
+//            List<User> list = userDao.queryAll();
+//            if (list != null && list.size() > 0) {
+//                session.setAttribute("User_list", list);
+//            }
+//            System.out.println("User_query_success");
+//            return "User_query_success";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("User_query_null");
+//            return "User_query_null";
+//        }
+//    }
 }
 

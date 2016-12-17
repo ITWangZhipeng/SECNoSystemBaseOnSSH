@@ -5,14 +5,28 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    <!--UserAction-->
     <package name="users" namespace="/" extends="struts-default">
-        <action name="User_login" class="com.sec.action.UserAction" method="login">
-            <result name="login_success">/WEB-INF/users/User_login_success.jsp</result>
-            <result name="login_failed">/index.jsp</result>
-        </action>
-        <action name="QueryAllUser" class="com.sec.action.UserAction" method="query">
-            <result name="User_query_success">/WEB-INF/users/QueryAll.jsp</result>
-            <result name="User_query_null">/WEB-INF/users/QueryNull.jsp</result>
+        <action name="User_login" class="com.sec.action.User.UserAction" method="login">
+            <result name="login_success">/users/Users_login_success.jsp</result>
+            <result name="login_failed">/users/Users_login.jsp</result>
         </action>
     </package>
+
+    <!--QueryAllUser-->
+    <package name="QueryUsers" namespace="/" extends="struts-default">
+        <action name="QueryAllUser" class="com.sec.action.User.QueryAllUser" method="query">
+            <result name="User_query_success">/users/QueryAll.jsp</result>
+            <result name="User_query_null">/users/QueryNull.jsp</result>
+        </action>
+    </package>
+
+    <!--QueryAllTZD-->
+    <package name="QueryTZD" namespace="/" extends="struts-default">
+        <action name="QueryAllTZD" class="com.sec.action.TZD.QueryAllTZD" method="query">
+            <result name="TZD_query_success">/TZD/QueryAll.jsp</result>
+            <result name="TZD_query_null">/TZD/QueryNull.jsp</result>
+        </action>
+    </package>
+
 </struts>

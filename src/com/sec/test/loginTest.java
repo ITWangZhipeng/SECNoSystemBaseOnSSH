@@ -10,7 +10,7 @@ import com.sec.db.User;
 public class loginTest {
     public static void main(String[] args) {
         User user = new User();
-        user.setUserName("王志鹏");
+        user.setWorkID(10433208);
         user.setPassword("111111");
         IUserDao userDao = new IUserDaoImpl();
         boolean result = false;
