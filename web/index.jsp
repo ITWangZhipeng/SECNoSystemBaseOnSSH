@@ -6,8 +6,8 @@
 </head>
 <body>
 <form name="loginForm" action="/User_login.action" method="post">
-    用户名：
-    <input type="text" name="userName" />
+    工号：
+    <input type="text" name="WorkID" />
     密码：
     <input type="password" name="password" />
 

@@ -95,7 +95,6 @@ public class DBTest {
         session.save(user2);
         session.save(user3);
         session.save(user4);
-
     }
 
     @Test

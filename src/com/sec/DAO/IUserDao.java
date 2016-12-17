@@ -9,15 +9,15 @@ import java.util.List;
  */
 public interface IUserDao {
     //增
-    void insert(User user) throws Exception;
+    boolean insert(User user) throws Exception;
     //删
-    void delUser(User user) throws Exception;
+    boolean delUser(long workID) throws Exception;
     //改
-    void updateUser(User user) throws Exception;
+    boolean updateUser(User user) throws Exception;
     //查全
     List<User> queryAll() throws Exception;
     //单查
-    String queryById(int UserId) throws Exception;
+    User queryById(long UserId) throws Exception;
     //验证登录
     boolean loginValidate(User user) throws  Exception;
 }

@@ -1,5 +1,6 @@
 package com.sec.db;
 
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
