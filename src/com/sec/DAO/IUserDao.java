@@ -19,5 +19,5 @@ public interface IUserDao {
     //单查
     User queryById(long UserId) throws Exception;
     //验证登录
-    boolean loginValidate(User user) throws  Exception;
+    User loginValidate(User user) throws  Exception;
 }

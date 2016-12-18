@@ -26,6 +26,11 @@ public class TongZhiDan {
     @Column(name = "年度")
     private int year = Calendar.getInstance().get(Calendar.YEAR);
 
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumns({
+            @JoinColumn(name = "WorkID", referencedColumnName = "WorkID")
+    })
+    private User user;
 
     public TongZhiDan() {
     }
@@ -33,6 +38,15 @@ public class TongZhiDan {
     public TongZhiDan(String name, String content) {
         this.department = name;
         this.content = content;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+
+        return user;
     }
 
     public void setTid(int tid) {
@@ -73,6 +87,6 @@ public class TongZhiDan {
         return department +
                 (year - 2000) + '-' +
                 new_tid +
-                ':' + content ;
+                ':' + content;
     }
 }

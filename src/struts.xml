@@ -29,4 +29,22 @@
         </action>
     </package>
 
+    <!--deleTZDAction-->
+    <package name="delTZDAction" namespace="/" extends="struts-default">
+        <action name="delTZDAction" class="com.sec.action.TZD.delTZDAction" method="dele">
+            <result name="TZD_dele_success" type="chain">QueryAllTZD</result>
+            <result name="TZD_dele_failed" type="chain">QueryAllTZD</result>
+        </action>
+    </package>
+
+    <!--TZD_addAction-->
+    <package name="addTZDAction" namespace="/" extends="struts-default">
+        <action name="addTZDAction" class="com.sec.action.TZD.addTZDAction" method="add">
+            <result name="add_TZD_success" type="chain">QueryAllTZD</result>
+            <result name="add_TZD_failed" type="chain">QueryAllTZD</result>
+        </action>
+    </package>
+
+
+
 </struts>

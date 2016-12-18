@@ -32,7 +32,30 @@ public class IUserDaoImpl implements IUserDao {
 
     @Override
     public boolean updateUser(User user) throws Exception {
-        return false;
+        Transaction tx = null;
+        List<User> list = null;
+        String hql = "";
+
+        try {
+            Session session = myHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+
+            session.update(user);
+
+            session.flush();
+            tx.commit();
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("通过WorkID查找用户发生错误");
+            return false;
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
+        }
+
     }
 
     @Override
@@ -76,10 +99,9 @@ public class IUserDaoImpl implements IUserDao {
 
             tx.commit();
 
-            if(list.size()>0){
+            if (list.size() > 0) {
                 return list.get(0);
-            }
-            else {
+            } else {
                 return null;
             }
 
@@ -97,7 +119,7 @@ public class IUserDaoImpl implements IUserDao {
 
 
     @Override
-    public boolean loginValidate(User user) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+    public User loginValidate(User user) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException {
         System.out.println("开始验证登录信息");
         Transaction tx = null;
         String hql = "";
@@ -113,13 +135,13 @@ public class IUserDaoImpl implements IUserDao {
             tx.commit();//提交事务
 
             if (list.size() > 0) {
-                return true;
+                return (User)list.get(0);
             } else {
-                return false;
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         } finally {
             if (tx != null) {
                 tx = null;

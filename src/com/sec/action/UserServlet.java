@@ -40,10 +40,10 @@ public class UserServlet extends HttpServlet {
         try {
             System.out.println("*******************");
             IUserDao userDao = new IUserDaoImpl();
-            boolean loginCheck = userDao.loginValidate(user1);
+            User u = userDao.loginValidate(user1);
             System.out.println("*******************");
-            System.out.println(loginCheck);
-            if (loginCheck) {
+            System.out.println(u);
+            if (u!=null) {
                 response.getWriter().append("Login Success");
                 response.getWriter().append("username: " + username
                         + "  password: " + password);

@@ -41,61 +41,61 @@ public class DBTest {
         sessionFactory.close();
     }
 
-    @Test
-    public void Test() {
-        User user1 = new User(10433208, "王志鹏", "111111");
-        User user2 = new User(10433234, "秦小伟", "111111");
-        User user3 = new User(10433207, "李兆辉", "111111");
-        User user4 = new User(10432414, "陈福龙", "111111");
-
-        Set<TongZhiDan> tongZhiDanSet = new HashSet<TongZhiDan>();
-        TongZhiDan tongZhiDan1 = new TongZhiDan("设订单", "NOB10000SH30C065......");
-        TongZhiDan tongZhiDan2 = new TongZhiDan("设订单", "NOB10000SH30C066......");
-        TongZhiDan tongZhiDan3 = new TongZhiDan("设订单", "NOB10000SH30C067......");
-
-        tongZhiDanSet.add(tongZhiDan1);
-        tongZhiDanSet.add(tongZhiDan2);
-        tongZhiDanSet.add(tongZhiDan3);
-        user1.setTongZhiDens(tongZhiDanSet);
-
-        session.save(tongZhiDan1);
-        session.save(tongZhiDan2);
-        session.save(tongZhiDan3);
-
-
-        Set<JiGui> jiGuiSet = new HashSet<JiGui>();
-        JiGui jiGui1 = new JiGui("NOB0600SH30C021...");
-        JiGui jiGui2 = new JiGui("NOB0600SH30C022...");
-        JiGui jiGui3 = new JiGui("NOB0600SH30C023...");
-
-        jiGuiSet.add(jiGui1);
-        jiGuiSet.add(jiGui2);
-        jiGuiSet.add(jiGui3);
-        user1.setJiGuis(jiGuiSet);
-
-        session.save(jiGui1);
-        session.save(jiGui2);
-        session.save(jiGui3);
-
-        Set<ChuanZhen> chuanZhenSet = new HashSet<ChuanZhen>();
-        ChuanZhen chuanZhen1 = new ChuanZhen("NOB0600SH30C021...");
-        ChuanZhen chuanZhen2 = new ChuanZhen("NOB0600SH30C021...");
-        ChuanZhen chuanZhen3 = new ChuanZhen("NOB0600SH30C021...");
-
-        chuanZhenSet.add(chuanZhen1);
-        chuanZhenSet.add(chuanZhen2);
-        chuanZhenSet.add(chuanZhen3);
-        user1.setChuanZhens(chuanZhenSet);
-
-        session.save(chuanZhen1);
-        session.save(chuanZhen2);
-        session.save(chuanZhen3);
-
-        session.save(user1);
-        session.save(user2);
-        session.save(user3);
-        session.save(user4);
-    }
+//    @Test
+//    public void Test() {
+//        User user1 = new User(10433208, "王志鹏", "111111");
+//        User user2 = new User(10433234, "秦小伟", "111111");
+//        User user3 = new User(10433207, "李兆辉", "111111");
+//        User user4 = new User(10432414, "陈福龙", "111111");
+//
+//        Set<TongZhiDan> tongZhiDanSet = new HashSet<TongZhiDan>();
+//        TongZhiDan tongZhiDan1 = new TongZhiDan("设订单", "NOB10000SH30C065......");
+//        TongZhiDan tongZhiDan2 = new TongZhiDan("设订单", "NOB10000SH30C066......");
+//        TongZhiDan tongZhiDan3 = new TongZhiDan("设订单", "NOB10000SH30C067......");
+//
+//        tongZhiDanSet.add(tongZhiDan1);
+//        tongZhiDanSet.add(tongZhiDan2);
+//        tongZhiDanSet.add(tongZhiDan3);
+//        user1.setTongZhiDens(tongZhiDanSet);
+//
+//        session.save(tongZhiDan1);
+//        session.save(tongZhiDan2);
+//        session.save(tongZhiDan3);
+//
+//
+//        Set<JiGui> jiGuiSet = new HashSet<JiGui>();
+//        JiGui jiGui1 = new JiGui("NOB0600SH30C021...");
+//        JiGui jiGui2 = new JiGui("NOB0600SH30C022...");
+//        JiGui jiGui3 = new JiGui("NOB0600SH30C023...");
+//
+//        jiGuiSet.add(jiGui1);
+//        jiGuiSet.add(jiGui2);
+//        jiGuiSet.add(jiGui3);
+//        user1.setJiGuis(jiGuiSet);
+//
+//        session.save(jiGui1);
+//        session.save(jiGui2);
+//        session.save(jiGui3);
+//
+//        Set<ChuanZhen> chuanZhenSet = new HashSet<ChuanZhen>();
+//        ChuanZhen chuanZhen1 = new ChuanZhen("NOB0600SH30C021...");
+//        ChuanZhen chuanZhen2 = new ChuanZhen("NOB0600SH30C021...");
+//        ChuanZhen chuanZhen3 = new ChuanZhen("NOB0600SH30C021...");
+//
+//        chuanZhenSet.add(chuanZhen1);
+//        chuanZhenSet.add(chuanZhen2);
+//        chuanZhenSet.add(chuanZhen3);
+//        user1.setChuanZhens(chuanZhenSet);
+//
+//        session.save(chuanZhen1);
+//        session.save(chuanZhen2);
+//        session.save(chuanZhen3);
+//
+//        session.save(user1);
+//        session.save(user2);
+//        session.save(user3);
+//        session.save(user4);
+//    }
 
     @Test
     public void Inquiry_TZD() {
@@ -134,6 +134,15 @@ public class DBTest {
     }
 
     @Test
+    public void updateTZD() {
+        Long WorkID = 10433208L;
+        String hql = "update TongZhiDan set WorkID =:WorkID where tid = 13";
+        Query query = session.createQuery(hql);
+        query.setLong("WorkID", WorkID);
+        query.executeUpdate();
+    }
+
+    @Test
     public void checklogin() {
         User user = new User();
         user.setUserName("王志鹏");
@@ -150,6 +159,45 @@ public class DBTest {
 
         }
         System.out.println("登录失败");
+
+    }
+
+
+    @Test
+    public void Test2() {
+//
+        User user1 = new User(10433208, "王志鹏", "111111");
+//        User user2 = new User(10433234, "秦小伟", "111111");
+//        User user3 = new User(10433207, "李兆辉", "111111");
+//        User user4 = new User(10432414, "陈福龙", "111111");
+//
+//
+//        session.save(user1);
+//        session.save(user2);
+//        session.save(user3);
+//        session.save(user4);
+
+
+        TongZhiDan tongZhiDan1 = new TongZhiDan("设订单", "NOB10000SH30C065......");
+        TongZhiDan tongZhiDan2 = new TongZhiDan("设订单", "NOB10000SH30C066......");
+        TongZhiDan tongZhiDan3 = new TongZhiDan("设订单", "NOB10000SH30C067......");
+
+        tongZhiDan1.setUser(user1);
+        tongZhiDan2.setUser(user1);
+        tongZhiDan3.setUser(user1);
+
+        Set<TongZhiDan> tongZhiDanSet = new HashSet<TongZhiDan>();
+        tongZhiDanSet.add(tongZhiDan1);
+        tongZhiDanSet.add(tongZhiDan2);
+        tongZhiDanSet.add(tongZhiDan3);
+        user1.setTongZhiDens(tongZhiDanSet);
+
+        session.update(user1);
+
+        session.save(tongZhiDan1);
+        session.save(tongZhiDan2);
+        session.save(tongZhiDan3);
+
 
     }
 }

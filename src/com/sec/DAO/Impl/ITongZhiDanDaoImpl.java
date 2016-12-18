@@ -12,14 +12,61 @@ import java.util.List;
 /**
  * Created by 10433208 on 2016/12/9.
  */
-public class ITongZhiDanDaoImpl implements ITongZhiDanDao{
-    @Override
-    public void insert(TongZhiDan tongZhiDan) throws Exception {
+public class ITongZhiDanDaoImpl implements ITongZhiDanDao {
 
+    @SuppressWarnings("JpaQlInspection")
+    @Override
+    public boolean insert(TongZhiDan tongZhiDan, long workID) throws Exception {
+
+        Transaction tx = null;
+
+        try {
+            Session session = myHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+
+            session.save(tongZhiDan);
+            session.flush();
+            String hql = "update TongZhiDan set WorkID =:WorkID where tid=:tid";
+            Query query = session.createQuery(hql);
+            query.setLong("WorkID", workID);
+            query.setLong("tid", tongZhiDan.getTid());
+            query.executeUpdate();
+
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
+        }
     }
 
     @Override
-    public void delTongZhiDan(TongZhiDan tongZhiDan) throws Exception {
+    public boolean delTongZhiDan(int tid) throws Exception {
+
+        Transaction tx = null;
+        String hql = "";
+
+        try {
+            Session session = myHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            TongZhiDan tongZhiDan = (TongZhiDan) session.get(TongZhiDan.class, tid);
+            session.delete(tongZhiDan);
+            tx.commit();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
+        }
+
 
     }
 
@@ -30,7 +77,7 @@ public class ITongZhiDanDaoImpl implements ITongZhiDanDao{
 
 
     @Override
-    public List<TongZhiDan> queryAll() throws Exception {
+    public List<TongZhiDan> queryAll(long workID) throws Exception {
         Transaction tx = null;
         List<TongZhiDan> list = null;
         String hql = "";
@@ -38,8 +85,9 @@ public class ITongZhiDanDaoImpl implements ITongZhiDanDao{
         try {
             Session session = myHibernateSessionFactory.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
-            hql = "from TongZhiDan ";
+            hql = "from TongZhiDan where WorkID = :WorkID";
             Query query = session.createQuery(hql);
+            query.setLong("WorkID", workID);
             list = query.list();
             tx.commit();
             return list;

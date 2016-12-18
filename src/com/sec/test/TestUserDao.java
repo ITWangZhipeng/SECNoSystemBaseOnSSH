@@ -36,4 +36,20 @@ public class TestUserDao {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void updateUser(){
+        IUserDao iUserDao = new IUserDaoImpl();
+        try{
+            User user = new User(10433208,"王志鹏","222222");
+            iUserDao.updateUser(user);
+            user = iUserDao.queryById(user.getWorkID());
+            System.out.println(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

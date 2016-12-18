@@ -12,16 +12,18 @@ import java.util.Set;
 @SuppressWarnings({"JpaDataSourceORMInspection", "unused", "SpellCheckingInspection"})
 @Entity
 public class User {
+
     @Id
-    @GeneratedValue(generator = "WorkId")
-    @GenericGenerator(name = "WorkId", strategy = "assigned")
+    @GeneratedValue(generator = "WorkID")
+    @GenericGenerator(name = "WorkID", strategy = "assigned")
+    @Column(length = 8)
     private long WorkID;
 
     @Basic
     @Column(name = "userName")
     private String userName;
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY )
     @JoinColumn(name = "WorkID")
     private Set<TongZhiDan> tongZhiDens;
 
@@ -40,7 +42,7 @@ public class User {
     }
 
     public User(long workID, String userName, String pwd) {
-        WorkID = workID;
+        this.WorkID = workID;
         this.userName = userName;
         this.password = pwd;
     }

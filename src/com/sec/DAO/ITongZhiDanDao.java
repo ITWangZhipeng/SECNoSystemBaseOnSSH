@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface ITongZhiDanDao {
     //增
-    void insert(TongZhiDan tongZhiDan) throws Exception;
+    boolean insert(TongZhiDan tongZhiDan, long workID) throws Exception;
     //删
-    void delTongZhiDan(TongZhiDan tongZhiDan) throws Exception;
+    boolean delTongZhiDan(int tid) throws Exception;
     //改
     void updateTongZhiDan(TongZhiDan tongZhiDan) throws Exception;
     //查全
-    List<TongZhiDan> queryAll() throws Exception;
+    List<TongZhiDan> queryAll(long workID) throws Exception;
     //单查
     String queryById(int TZDId) throws Exception;
 }

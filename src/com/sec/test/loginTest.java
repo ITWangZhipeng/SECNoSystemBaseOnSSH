@@ -15,15 +15,16 @@ public class loginTest {
         IUserDao userDao = new IUserDaoImpl();
         boolean result = false;
         try {
-            result = userDao.loginValidate(user);
+            User u = userDao.loginValidate(user);
+
+            if (u != null) {
+                System.out.println(result);
+                System.out.println("login_success");
+            } else {
+                System.out.println("login_failed");
+            }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        if (result) {
-            System.out.println(result);
-            System.out.println("login_success");
-        } else {
-            System.out.println("login_failed");
         }
     }
 }

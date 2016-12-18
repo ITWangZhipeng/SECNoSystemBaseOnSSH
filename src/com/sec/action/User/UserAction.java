@@ -32,10 +32,12 @@ public class UserAction extends SuperAction implements ModelDriven<User> {
 
     public String login() throws Exception {
         IUserDao userDao = new IUserDaoImpl();
-        boolean result = userDao.loginValidate(user);
-        if (result) {
-            System.out.println(result);
-            session.setAttribute("loginWorkID", user.getWorkID());
+        User u = userDao.loginValidate(user);
+        if (u!=null) {
+            System.out.println(u);
+            session.setAttribute("loginWorkID", u.getWorkID());
+            session.setAttribute("loginUserName", u.getUserName());
+            session.setAttribute("user", u);
             return "login_success";
         } else {
             return "login_failed";

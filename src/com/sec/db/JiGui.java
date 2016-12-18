@@ -25,11 +25,27 @@ public class JiGui {
     @Column(name = "年度")
     private int year = Calendar.getInstance().get(Calendar.YEAR);
 
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumns({
+            @JoinColumn(name = "WorkID", referencedColumnName = "WorkID")
+    })
+    private User user;
+
     public JiGui() {
     }
 
+
     public JiGui(String content) {
         this.content = content;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+
+        return user;
     }
 
     public int getJid() {
@@ -62,6 +78,6 @@ public class JiGui {
         String new_sid = String.format("%03d", jid);
         return "机规" +
                 (year - 2000) + '-' + new_sid +
-                ":" + content ;
+                ":" + content;
     }
 }

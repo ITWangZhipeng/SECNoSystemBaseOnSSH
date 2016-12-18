@@ -21,7 +21,37 @@ public class ChuanZhen {
     @Column(name = "年度")
     private int year = Calendar.getInstance().get(Calendar.YEAR);
 
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumns({
+            @JoinColumn(name = "WorkID", referencedColumnName = "WorkID")
+    })
+    private User user;
+
     public ChuanZhen() {
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public ChuanZhen(String content) {
@@ -41,6 +71,6 @@ public class ChuanZhen {
         String new_cid = String.format("%03d", cid);
         return "传真" +
                 (year - 2000) + '-' + new_cid +
-                ":" + content ;
+                ":" + content;
     }
 }

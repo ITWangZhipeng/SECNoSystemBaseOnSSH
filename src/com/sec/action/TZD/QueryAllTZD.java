@@ -24,7 +24,8 @@ public class QueryAllTZD extends SuperAction implements ModelDriven<TongZhiDan> 
         ITongZhiDanDao iTongZhiDanDao = new ITongZhiDanDaoImpl();
 
         try {
-            List<TongZhiDan> list = iTongZhiDanDao.queryAll();
+            long WorkID = (long) session.getAttribute("loginWorkID");
+            List<TongZhiDan> list = iTongZhiDanDao.queryAll(WorkID);
             if (list != null && list.size() > 0) {
                 session.setAttribute("TZD_list", list);
             }

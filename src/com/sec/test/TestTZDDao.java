@@ -15,7 +15,8 @@ public class TestTZDDao {
     public void testQueryAllTZD(){
         ITongZhiDanDao iTongZhiDanDao = new ITongZhiDanDaoImpl();
         try {
-            List<TongZhiDan> list = iTongZhiDanDao.queryAll();
+            long WorkID = 10433208L;
+            List<TongZhiDan> list = iTongZhiDanDao.queryAll(WorkID);
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i));
             }
