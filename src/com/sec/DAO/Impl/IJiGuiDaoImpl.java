@@ -8,13 +8,15 @@ import java.util.List;
 
 public class IJiGuiDaoImpl implements IJiGuiDao{
     @Override
-    public void insert(JiGui jigui) throws Exception {
+    public boolean insert(JiGui jigui, long workID) throws Exception {
 
+        return false;
     }
 
     @Override
-    public void delJiGui(JiGui jigui) throws Exception {
+    public boolean delJiGui(Integer jigui) throws Exception {
 
+        return false;
     }
 
     @Override
@@ -24,7 +26,7 @@ public class IJiGuiDaoImpl implements IJiGuiDao{
 
 
     @Override
-    public List<JiGui> queryAll() throws Exception {
+    public List<JiGui> queryAll(long workID) throws Exception {
         return null;
     }
 

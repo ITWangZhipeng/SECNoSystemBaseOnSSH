@@ -10,13 +10,15 @@ import java.util.List;
  */
 public class IChuanZhenDaoImpl implements IChuanZhenDao{
     @Override
-    public void insert(ChuanZhen cz) throws Exception {
+    public boolean insert(ChuanZhen cz, long workID) throws Exception {
 
+        return false;
     }
 
     @Override
-    public void delChuanZhen(ChuanZhen cz) throws Exception {
+    public boolean delChuanZhen(Integer cz) throws Exception {
 
+        return false;
     }
 
     @Override

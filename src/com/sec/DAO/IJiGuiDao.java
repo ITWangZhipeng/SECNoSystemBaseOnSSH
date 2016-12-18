@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface IJiGuiDao {
     //增
-    void insert(JiGui jigui) throws Exception;
+    boolean insert(JiGui jigui, long workID) throws Exception;
     //删
-    void delJiGui(JiGui jigui) throws Exception;
+    boolean delJiGui(Integer jigui) throws Exception;
     //改
     void updateJiGui(JiGui jigui) throws Exception;
     //查全
-    List<JiGui> queryAll() throws Exception;
+    List<JiGui> queryAll(long workID) throws Exception;
     //单查
     String queryById(int JGId) throws Exception;
 }

@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface IChuanZhenDao {
     //增
-    void insert(ChuanZhen cz) throws Exception;
+    boolean insert(ChuanZhen cz, long workID) throws Exception;
     //删
-    void delChuanZhen(ChuanZhen cz) throws Exception;
+    boolean delChuanZhen(Integer cz) throws Exception;
     //改
     void updateChuanZhen(ChuanZhen cz) throws Exception;
     //查全
